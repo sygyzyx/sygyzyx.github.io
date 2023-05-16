@@ -5,6 +5,7 @@ html {
 body{
     margin: 0;
     background-color: white;
+    cursor: default;
 }
 
 .hidden{
@@ -81,6 +82,7 @@ body{
     position: sticky;
     top: 20px;
     z-index: 1;
+    cursor: pointer;
 }
 .section1Body{
     display: flex;
@@ -197,3 +199,12 @@ body{
 .section3{
     background-color: rgb(255, 255, 255);
 }  
+
+#zoomableImg {
+    transition: transform 5s;
+  }
+  
+  .zoomed {
+    transform: scale(2) translate(50%, 30%);
+  }
+  

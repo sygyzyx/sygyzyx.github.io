@@ -115,9 +115,21 @@ const changingText = document.querySelectorAll('.changingText');
 function getRandomInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+function getRandomColor() {
+  const abc = '0123456789ABCDEF';
+  let color = '#';
+  // console.log(Math.floor(Math.random() * 16));
+  for (let i=0; i<6; i++) {
+    color += abc[Math.floor(Math.random() * 16)];
+    // console.log(color);
+  }
+  return color;
+}
 function changeTextContent(item) {
   const currentText = item.textContent;
   const toggledText = currentText === currentText.toUpperCase() ? currentText.toLowerCase() : currentText.toUpperCase();
+  item.style.color = getRandomColor();
+  item.style.filter = 'blur(1px);'
   item.textContent = toggledText;
   item.classList.toggle('first');
   item.classList.toggle('second');
@@ -129,3 +141,29 @@ changingText.forEach(item => {
   setTimeout(() => changeTextContent(item), interval);
 });
 // 
+
+
+// TTS 
+const textToSpeech = (message) => {
+  const speech = new SpeechSynthesisUtterance(message);
+  var voice = speechSynthesis.getVoices();
+  speech.voice = voice[2]
+  speech.pitch = 0.7;
+  speech.rate = 0.9;
+  speechSynthesis.speak(speech);
+}
+
+const aadesh = document.getElementById('pageTitleHead')
+aadesh.addEventListener('click', () => {textToSpeech('ahdeysh')})
+;
+//
+
+
+const imgElement = document.getElementById('zoomableImg');
+
+function zoomImage() {
+  imgElement.classList.toggle('zoomed');
+}
+
+setInterval(zoomImage, 5000);
+

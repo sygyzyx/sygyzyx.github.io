@@ -14,43 +14,24 @@ setInterval(changeText, 1000);
 
 
 // ABOUT ME ANIMATION 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    } else {
-      entry.target.classList.remove('show');
+document.addEventListener('DOMContentLoaded', function () {
+  var title = document.querySelector('.section2BodyHeadTitle');
+  var quote = document.querySelector('#quote-text-2');
+
+  function checkScroll() {
+    var elementPosition = title.getBoundingClientRect().top;
+
+    if (elementPosition - window.innerHeight <= 0) {
+      title.classList.add('animate');
+      quote.classList.add('write')
     }
-  });
-});
-const hiddenElements = document.querySelectorAll('.hidden');
-hiddenElements.forEach((el) => observer.observe(el));
-let lastScrollPosition = window.pageYOffset;
-document.addEventListener('scroll', function () {
-  const currentScrollPosition = window.pageYOffset;
-  const windowHeight = window.innerHeight;
-  const scrollThreshold = windowHeight * 0.7;
-  if (currentScrollPosition > lastScrollPosition) {
-    // Scrolling down
-    hiddenElements.forEach((el) => {
-      if (!el.classList.contains('show')) {
-        el.classList.add('show');
-      }
-    });
-  } else {
-    hiddenElements.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      const elementPosition = rect.top - scrollThreshold;
-      const isVisible = elementPosition <= 0 && rect.bottom >= 0;
-      if (isVisible) {
-        el.classList.add('show');
-      } else {
-        el.classList.remove('show');
-      }
-    });
   }
-  lastScrollPosition = currentScrollPosition;
+
+  checkScroll();
+
+  window.addEventListener('scroll', checkScroll);
 });
+
 //
 
 
@@ -67,48 +48,6 @@ scrollButton.addEventListener('click', () => {
   targetElement.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
 });
 //
-
-
-//SOPHISTICATED ANIMATION
-const QUOTEobserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('write');
-    } else {
-      entry.target.classList.remove('write');
-    }
-  });
-});
-const quote = document.querySelector('#quote-text-2');
-TEXT = quote.textContent
-QUOTEobserver.observe(quote)
-document.addEventListener('scroll', function () {
-  const currentScrollPosition = window.pageYOffset;
-  const windowHeight = window.innerHeight;
-  const scrollThreshold = windowHeight * 0.7;
-  if (currentScrollPosition > lastScrollPosition) {
-    // Scrolling down
-    hiddenElements.forEach((el) => {
-      if (!el.classList.contains('show')) {
-        el.classList.add('show');
-      }
-    });
-  } else {
-    hiddenElements.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      const elementPosition = rect.top - scrollThreshold;
-      const isVisible = elementPosition <= 0 && rect.bottom >= 0;
-      if (isVisible) {
-        el.classList.add('show');
-      } else {
-        el.classList.remove('show');
-      }
-    });
-  }
-  lastScrollPosition = currentScrollPosition;
-});
-//
-
 
 // CHANGING TEXT 
 const changingText = document.querySelectorAll('.changingText');

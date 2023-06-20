@@ -131,12 +131,22 @@ body{
     font-family: 'Libre Barcode 39 Text', cursive;
     color: #FDDA0D;
     margin: 100px;
+    opacity: 0;
+    transform: translateX(-200%);
+    transition: opacity 3s ease-out, transform 3s ease-out;
+}
+.section2BodyHeadTitle.animate {
+opacity: 1;
+transform: translateX(0);
 }
 #section2BodyQuote{
     font-family: 'Major Mono Display', monospace;
     font-size: 4rem;
     text-align: center;
-    color: #ff3300;
+    color: white;
+}
+.color_white{
+    color: #FDDA0D;
 }
 .div{
     font-size: 2rem;
@@ -207,4 +217,5 @@ body{
   .zoomed {
     transform: scale(2) translate(50%, 30%);
   }
+
   
